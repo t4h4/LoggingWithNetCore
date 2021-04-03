@@ -20,7 +20,10 @@ namespace LoggingWithNetCore
             Host.CreateDefaultBuilder(args)
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
-                    webBuilder.UseStartup<Startup>();
+                    webBuilder.UseStartup<Startup>().ConfigureLogging(logging =>
+                    {
+                        logging.ClearProviders(); // built-in gelen loglama provider yapilari kaldirildi. built ekranýnda gozukmuyorlar artik.
+                    });
                 });
     }
 }

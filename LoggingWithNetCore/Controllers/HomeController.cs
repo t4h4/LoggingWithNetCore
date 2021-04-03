@@ -12,14 +12,20 @@ namespace LoggingWithNetCore.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
-
+        // ILogger'ı DI ile controller yapimiza dahil ettik. Loglardan ILogger yapisi sorumlu.
         public HomeController(ILogger<HomeController> logger)
         {
-            _logger = logger;
+            _logger = logger; 
         }
 
         public IActionResult Index()
         {
+            _logger.LogTrace("Index sayfasina girildi.");
+            _logger.LogDebug("Index sayfasina girildi.");
+            _logger.LogInformation("Index sayfasina girildi.");
+            _logger.LogWarning("Index sayfasina girildi.");
+            _logger.LogCritical("Index sayfasina girildi.");
+
             return View();
         }
 

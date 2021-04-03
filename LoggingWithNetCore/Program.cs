@@ -23,6 +23,7 @@ namespace LoggingWithNetCore
                     webBuilder.UseStartup<Startup>().ConfigureLogging(logging =>
                     {
                         logging.ClearProviders(); // built-in gelen loglama provider yapilari kaldirildi. built ekranýnda gozukmuyorlar artik.
+                        logging.AddDebug(); // debug eklendi. sadece debug esnasinda calisacak.
                     });
                 });
     }

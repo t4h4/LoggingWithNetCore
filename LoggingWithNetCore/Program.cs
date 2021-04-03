@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using System;
@@ -13,7 +14,14 @@ namespace LoggingWithNetCore
     {
         public static void Main(string[] args)
         {
-            CreateHostBuilder(args).Build().Run();
+            var host = CreateHostBuilder(args).Build(); // build host donebildigi icin bu ayari cekebildik.
+
+
+            //GetRequiredService ile DI kullanmadan istedigimiz servisi cagirabiliyoruz. ILogger'i cagirdik.
+            var logger = host.Services.GetRequiredService<ILogger<Program>>(); // kategori program olarak ayarlandý. 
+            logger.LogInformation("program ayaga kalkmaya basliyor...");
+
+            host.Run();
         }
 
         public static IHostBuilder CreateHostBuilder(string[] args) =>
